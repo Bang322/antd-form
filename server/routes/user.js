@@ -27,4 +27,18 @@ router.post('/checkUserId', (req, res) => {
     });
 });
 
+router.post('/signUp', (req, res) => {
+    const format = { language : 'sql', indent : '    ' };
+    const query = mybatisMapper.getStatement('userMapper', 'insertUserInfo', req.body, format);
+
+    getConnection(conn => {
+        conn.query(query, (error, result) => {
+            console.log(result);
+            if (!error) res.json({ success : true });
+            else res.json({ success : false });
+        });
+        conn.release();
+    });
+});
+
 module.exports = router;

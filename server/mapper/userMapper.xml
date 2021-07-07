@@ -8,4 +8,30 @@
             user_id = #{userId}
         </where>
     </select>
+
+    <insert id="insertUserInfo">
+        INSERT INTO user_form_info (
+            user_id
+            , password
+            , name
+            , birth
+            , gender
+            <if test="email != null and email != ''">
+                , email
+            </if>
+            , zip_code
+            , address
+        ) VALUES (
+            #{userId}
+            , #{password}
+            , #{name}
+            , #{birth}
+            , #{gender}
+            <if test="email != null and email != ''">
+                , #{email}
+            </if>
+            , #{zipCode}
+            , #{address}
+        )
+    </insert>
 </mapper>

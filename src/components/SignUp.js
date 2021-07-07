@@ -31,8 +31,22 @@ const SignUp = () => {
 
     // Form 입력값들에 대한 validation 을 통과했을 때, 해당 함수가 실행됨
     // values 값에는 Form 에서 입력한 값들이 객체 형태로 들어있다.
-    const onSubmit = values => {
-        console.log(`form data : ${JSON.stringify(values)}`);
+    const onSubmit = async ({ userId, password, name, year, month, day, gender, email, zipCode, address, addressDetail }) => {
+        // 필요한 데이터만 재조립
+        const signUpData = {
+            userId,
+            password,
+            name,
+            birth : `${year}-${month}-${day}`,
+            gender,
+            email,
+            zipCode,
+            address : `${address}, ${addressDetail}`
+        };
+        const res = await axios.post('http://localhost:3001/user/signUp', signUpData);
+        const { success } = res.data;
+        if (success) console.log('회원가입 성공!');
+        else console.log('회원가입 실패');
     };
 
     const onCompletePost = data => {
