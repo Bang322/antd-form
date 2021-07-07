@@ -5,8 +5,6 @@ import axios from 'axios';
 import moment from "moment";
 import DaumPostcode from "react-daum-postcode";
 
-
-
 // 월을 선택하는 Select 의 Option 에 사용될 배열
 const monthData = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
@@ -18,7 +16,9 @@ const SignUp = () => {
     const [form] = Form.useForm();
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [isOpenPost, setIsOpenPost] = useState(false);
-    
+
+    // isOpenModal 이 true 가 되어 모달창이 열리면, 0.2초 늦게 isOpenPost 상태값을 변경하여 DaumPostcode 컴포넌트 렌더링 함
+    // 모달창이 열림과 동시에 DaumPostcode 컴포넌트를 렌더링하면 모달창이 버벅거림
     useEffect(() => {
         if (isOpenModal) {
             setTimeout(() => {
@@ -340,7 +340,7 @@ const SignUp = () => {
                     title="주소 찾기"
                     visible={isOpenModal}
                     bodyStyle={{ height : '448px' }}
-                    footer={null}
+                    footer={null}  // 모달 footer 제거
                     onCancel={() => setIsOpenModal(false)}
                 >
                     {isOpenPost && <DaumPostcode onComplete={onCompletePost}/>}
