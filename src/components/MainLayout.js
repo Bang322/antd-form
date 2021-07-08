@@ -8,8 +8,8 @@ const { Header, Content, Footer } = Layout;
 const { SubMenu } = Menu;
 
 const MainLayout = () => {
-    const [isMobile, setIsMobile] = useState(false);
-    const [collapsed, setCollapsed] = useState(true);
+    const [isMobile, setIsMobile] = useState(false);   // 현재 화면이 모바일인지 데스크탑인지 나타내주는 상태값
+    const [collapsed, setCollapsed] = useState(false);  // 사이드바의 접힘과 펼침 상태
 
     const handleResize = debounce(() => {
         if (window.innerWidth <= 768) {
@@ -23,6 +23,7 @@ const MainLayout = () => {
     }, 100);
 
     useEffect(() => {
+        handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
@@ -33,17 +34,23 @@ const MainLayout = () => {
                 style={{ padding : 0, height : 55 }}
                 className="header"
             >
-                {isMobile && <div><Button onClick={() => setCollapsed(!collapsed)}>토글 버튼</Button></div>}
             </Header>
             <Drawer
                 placement="left"
-                visible={collapsed}
+                visible={collapsed}  // 사이드바의 접힘과 펼쳐짐 여부
                 className="sidebar"
-                closable={false}
+                closable={false}     // 사이드바 오른쪽 상단에 닫기 버튼 표시 여부
                 onClose={() => setCollapsed(false)}
                 width={220}
+                // 모바일 화면일 때만 사이드바를 접고 펼칠 수 있는 핸들러 렌더링
+                handler={isMobile ?
+                    <div className="drawer-handle" onClick={() => setCollapsed(!collapsed)}>
+                        <i className="drawer-handle-icon" />
+                    </div>
+                    : null
+                }
                 bodyStyle={{ padding : 0 }}
-                mask={isMobile}
+                mask={isMobile}  // 사이드바가 펼쳐질 때, 화면이 어두워지는 마스크 효과 설정 여부 -> 모바일 화면에서만 설정
             >
                 <Menu
                     mode="inline"

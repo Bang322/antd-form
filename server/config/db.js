@@ -4,12 +4,11 @@
  */
 const mysql = require('mysql');
 
-// 개인에 맞게 설정
 const pool = mysql.createPool({
     host : 'localhost',
     user : 'root',
     password : 'bang',
-    database : 'react'
+    database : 'reactstudy'
 });
 
 const getConnection = (callback) => {

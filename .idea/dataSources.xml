@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="react@localhost" uuid="e9d60677-a886-4a39-9d9a-39dc1141388b">
+    <data-source source="LOCAL" name="reactstudy@localhost" uuid="6193949b-5459-4167-b0a8-90f674bea895">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/react</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/reactstudy</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="reactstudy@localhost" uuid="6193949b-5459-4167-b0a8-90f674bea895">
+    <data-source source="LOCAL" name="reactstudy@localhost [2]" uuid="eaca59b1-cda4-4bd9-b637-818af4458516">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
