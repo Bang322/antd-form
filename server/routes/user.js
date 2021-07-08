@@ -7,7 +7,6 @@ mybatisMapper.createMapper(['./server/mapper/userMapper.xml']);
 router.use(express.json());
 
 router.post('/checkUserId', (req, res) => {
-    console.log('아이디 체크 서버 실행됨');
     const format = { language : 'sql', indent : '    ' };
     const query = mybatisMapper.getStatement('userMapper', 'getUserInfoById', req.body, format);
 

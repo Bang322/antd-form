@@ -10,6 +10,7 @@
         "axios": "^0.21.1",
         "cors": "^2.8.5",
         "express": "^4.17.1",
+        "lodash": "^4.17.21",
         "moment": "^2.29.1",
         "mybatis-mapper": "^0.6.5",
         "mysql": "^2.18.1",

@@ -6,10 +6,10 @@ const mysql = require('mysql');
 
 // 개인에 맞게 설정
 const pool = mysql.createPool({
-    host : '',
-    user : '',
-    password : '',
-    database : ''
+    host : 'localhost',
+    user : 'root',
+    password : 'bang',
+    database : 'react'
 });
 
 const getConnection = (callback) => {

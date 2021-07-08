@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import 'antd/dist/antd.min.css';
-import {Button, Form, Input, Select, Card, Checkbox, Radio, Modal} from "antd";
+import {Button, Form, Input, Select, Card, Checkbox, Radio, Modal, message} from "antd";
 import axios from 'axios';
 import moment from "moment";
 import DaumPostcode from "react-daum-postcode";
@@ -45,11 +45,12 @@ const SignUp = () => {
         };
         const res = await axios.post('http://localhost:3001/user/signUp', signUpData);
         const { success } = res.data;
-        if (success) console.log('회원가입 성공!');
-        else console.log('회원가입 실패');
+        if (success) message.success('회원이 되신 것을 환영합니다! 로그인 페이지로 이동합니다.');
+        else message.error('회원가입에 실패했습니다. 잠시 후 다시 시도해주세요.');
     };
 
     const onCompletePost = data => {
+        console.log(data);
         let fullAddress = data.address;
         let zoneCode = data.zonecode;
         let extraAddress = '';
@@ -127,7 +128,7 @@ const SignUp = () => {
                                         message : '필수 정보입니다.'
                                     },
                                     {
-                                        pattern : /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{4,12}$/,
+                                        pattern : /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{4,12}$/,
                                         message : '4~12자이며, 영문 대소문자, 숫자, 특수문자를 모두 포함해야 합니다.'
                                     }
                                 ]}

@@ -1,9 +1,10 @@
 import './App.css';
-import SignUp from "./components/SignUp";
+/*import SignUp from "./components/SignUp";*/
+import MainLayout from "./components/MainLayout";
 
 const App = () => {
     return (
-        <SignUp />
+        <MainLayout />
     );
 }
 

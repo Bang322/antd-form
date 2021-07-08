@@ -15,12 +15,6 @@ body {
     width: 465px;
 }
 
-.header {
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
-}
-
 /* hasFeedback 옵션을 줬을 때 나오는 아이콘 위치 조정 (안하면 아이콘이 나온 뒤 살짝 위로 올라감) */
 .sign-up-container .ant-form-item-children-icon > .anticon {
     vertical-align: -2px;
@@ -40,4 +34,62 @@ body {
 .sign-up-container .ant-card-body {
     height: 750px;
     overflow: auto;
+}
+
+/* antd message 가 사라질 때 애니메이션 (원래 그대로 사용하면 사라질 때 버벅거림) */
+@keyframes messageMoveOut {
+    from {
+        max-height: 150px;
+        padding: 8px;
+        opacity: 1;
+    }
+    to {
+        max-height: 0;
+        padding: 0;
+        opacity: 0;
+    }
+}
+
+.layout .header {
+    box-shadow: 0 2px 8px #f0f1f2;
+    background-color : #fff;
+}
+
+.ant-move-up-leave.ant-move-up-leave-active {
+    animation : messageMoveOut .3s;
+}
+
+.sidebar .ant-menu-inline {
+    border-right : none !important;
+}
+
+/* 데스크탑 화면 */
+@media (min-width: 768px) {
+    .layout .header {
+        position : relative;
+        z-index : 2000;
+    }
+    .sidebar {
+        margin-top : 55px;
+    }
+    .sidebar .ant-drawer-content-wrapper {
+        box-shadow : none !important;
+        border-right : 1px solid #f0f0f0;;
+    }
+    .sidebar .ant-drawer-mask {
+        display : none;
+    }
+    .layout .content {
+        margin-left : 220px;
+    }
+    .layout .footer {
+        margin : 0 30px 0 250px;
+    }
+}
+
+/* 모바일 화면 */
+@media (max-width: 768px) {
+    .layout .footer {
+        margin : 0 30px;
+    }
 }
