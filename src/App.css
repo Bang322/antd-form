@@ -119,6 +119,10 @@ body {
     transform: translateY(-5px) rotate(-45deg);
 }
 
+.sidebar .ant-menu-title-content {
+    font-size : 13px;
+}
+
 /* 데스크탑 화면 */
 @media (min-width: 768px) {
     .layout .header {
