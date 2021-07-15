@@ -17,7 +17,6 @@ const Sidebar = () => {
     });
     const [currentPath, setCurrentPath] = useState('');
 
-    console.log('컴포넌트 렌더링됨');
     const handleResize = debounce(() => {
         if (window.innerWidth <= 768) {
             setIsMobile(true);

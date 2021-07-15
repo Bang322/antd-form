@@ -50,7 +50,6 @@ const SignUp = () => {
     };
 
     const onCompletePost = data => {
-        console.log(data);
         let fullAddress = data.address;
         let zoneCode = data.zonecode;
         let extraAddress = '';

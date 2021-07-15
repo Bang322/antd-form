@@ -1,10 +1,10 @@
-import './App.css';
+import './css/custom.css';
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import SignUp from "./components/user/SignUp";
-import MainLayout from "./components/MainLayout";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
+import SignUp from "./components/user/SignUp";
+import MainLayout from "./components/MainLayout";
 import UserList from "./components/user/UserList";
 import UserForm from "./components/user/UserForm";
 
@@ -13,7 +13,7 @@ library.add(fas, far);
 const App = () => (
     <Router>
         <Switch>
-            <Route path="/join" exact component={SignUp} />
+            <Route path="/signUp" exact component={SignUp} />
             <Route
                 path="*"
                 exact
