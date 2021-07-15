@@ -8,7 +8,7 @@ const pool = mysql.createPool({
     host : 'localhost',
     user : 'root',
     password : 'bang',
-    database : 'react'
+    database : 'reactstudy'
 });
 
 const getConnection = (callback) => {

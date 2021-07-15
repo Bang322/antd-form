@@ -5,6 +5,7 @@ const getConnection = require('../config/db');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const jwt = require('jsonwebtoken');
+const { verifyAccessToken, verifyRefreshToken } = require('./middlewares/authorization');
 
 mybatisMapper.createMapper(['./server/mapper/userMapper.xml']);
 router.use(express.json());
@@ -101,6 +102,24 @@ router.post('/signIn', (req, res) => {
         });
         conn.release();
     });
-})
+});
+
+// refreshToken 을 검사하여 해당 토큰이 유효하면 로그인이 되어있는 상태라 보고, accessToken 을 새로 발급하여 클라이언트에게 전달
+router.get('/checkLoginStatus', verifyRefreshToken, (req, res) => {
+    console.log('로그인 상태 체크 실행됨');
+
+    const userId = req.userId; // refreshToken 이 유효하다면, verifyRefreshToken 미들웨어에서 req 객체에 userId 값을 설정했을 것
+    const accessToken = jwt.sign({
+        userId
+    }, 'bangRefreshTokenKey', {
+        expiresIn : '1h'
+    });
+
+    res.json({
+        success : true,
+        userId,
+        accessToken
+    });
+});
 
 module.exports = router;
