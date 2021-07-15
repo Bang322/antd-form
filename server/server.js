@@ -3,6 +3,7 @@ const app = express();
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const PORT = 3001;
 
@@ -12,6 +13,7 @@ app.use(cors({
     origin : 'http://localhost:3000',
     credentials : true
 }));
+app.use(cookieParser());
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 

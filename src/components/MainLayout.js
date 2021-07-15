@@ -9,9 +9,9 @@ const MainLayout = ({ children }) => {
     return (
         <div className="layout">
             <Header
-                style={{ padding : 0, height : 55 }}
                 className="header"
             >
+                <div className="logo">관리자 페이지</div>
             </Header>
             <Sidebar />
             <Content

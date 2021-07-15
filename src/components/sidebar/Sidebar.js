@@ -35,7 +35,6 @@ const Sidebar = () => {
     }, []);
 
 
-
     return (
         <Drawer
             placement="left"    // 사이드바 위치 설정

@@ -4,6 +4,7 @@ import {Button, Form, Input, Select, Card, Checkbox, Radio, Modal, message} from
 import axios from 'axios';
 import moment from "moment";
 import DaumPostcode from "react-daum-postcode";
+import {Link} from "react-router-dom";
 
 // 월을 선택하는 Select 의 Option 에 사용될 배열
 const monthData = [
@@ -12,7 +13,7 @@ const monthData = [
 
 const { Option } = Select;
 
-const SignUp = () => {
+const SignUp = ({ history }) => {
     const [form] = Form.useForm();
     const [isOpenModal, setIsOpenModal] = useState(false);
     const [isOpenPost, setIsOpenPost] = useState(false);
@@ -45,7 +46,10 @@ const SignUp = () => {
         };
         const res = await axios.post('http://localhost:3001/user/signUp', signUpData);
         const { success } = res.data;
-        if (success) message.success('회원이 되신 것을 환영합니다! 로그인 페이지로 이동합니다.');
+        if (success) {
+            message.success('회원이 되신 것을 환영합니다! 로그인 페이지로 이동합니다.');
+            history.push('/signIn');
+        }
         else message.error('회원가입에 실패했습니다. 잠시 후 다시 시도해주세요.');
     };
 
@@ -350,6 +354,16 @@ const SignUp = () => {
                         </Form>
                     </div>
                 </Card>
+                <div
+                    style={{
+                        color : '#b1b1b1',
+                        textAlign : 'center',
+                        marginTop : '10px',
+                        fontSize : '13px'
+                    }}
+                >
+                    이미 회원이신가요? <Link to="/signIn">여기</Link>를 눌러 로그인 해주세요.
+                </div>
                 <Modal
                     title="주소 찾기"
                     visible={isOpenModal}

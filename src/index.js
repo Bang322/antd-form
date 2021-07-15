@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import axios from 'axios';
+
+// 이 설정을 해줘야 axios 를 이용해 통신을 할 때, refreshToken 을 주고받을 수 있다.
+axios.defaults.withCredentials = true;
 
 ReactDOM.render(
     <React.StrictMode>
