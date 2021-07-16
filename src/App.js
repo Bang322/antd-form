@@ -11,33 +11,28 @@ import SignIn from "./components/user/SignIn";
 import Index from "./components/Index"
 import PrivateRoute from "./components/PrivateRoute";
 import axios from 'axios';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 library.add(fas, far);
 
 const App = () => {
-
+    const [isLogin, setIsLogin] = useState(false);
     useEffect(() => {
-        const checkLoginStatus = async () => {
-            try {
-                const res = await axios.get('http://localhost:3001/user/checkLoginStatus');
-                const {success, accessToken } = res.data;
-
+        axios.get('http://localhost:3001/user/checkLoginStatus')
+            .then(res => {
+                const { success, accessToken } = res.data;
                 if (success) {
-                    console.log('헤더 설정 완료');
                     axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+                    setIsLogin(true);
                 }
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        checkLoginStatus();
+            })
+            .catch(error => console.log(`에러 발생 -> ${error}`));
     }, []);
 
     return (
         <Router>
             <Switch>
-                <Route path="/signIn" exact component={SignIn}/>
+                <Route path="/signIn" exact render={props => <SignIn {...props} isLogin={isLogin} setIsLogin={setIsLogin} />}/>
                 <Route path="/signUp" exact component={SignUp}/>
                 <Route
                     path="*"
@@ -45,7 +40,7 @@ const App = () => {
                     render={() => (
                         <MainLayout>
                             <Switch>
-                                <PrivateRoute path={["/", "/index"]} exact component={Index}/>
+                                <PrivateRoute isLogin={isLogin} path={["/", "/index"]} exact component={Index}/>
                                 <Route path="/user/userList" exact component={UserList}/>
                                 <Route path="/user/userForm" exact component={UserForm}/>
                             </Switch>

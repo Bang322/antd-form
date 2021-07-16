@@ -1,10 +1,10 @@
 import React from 'react';
 import {Button, Card, Checkbox, Form, Input, message} from "antd";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import axios from 'axios';
 
-const SignIn = ({ history }) => {
+const SignIn = ({ location, isLogin, setIsLogin }) => {
     const onSubmit = async values => {
         const res = await axios.post('http://localhost:3001/user/signIn', values);
         const { success, accessToken } = res.data;
@@ -13,11 +13,16 @@ const SignIn = ({ history }) => {
             message.success('환영합니다.', 2);
             // 앞으로 axios 로 서버와 통신할 때마다 헤더에 accessToken 담아 보내도록 설정
             axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-            history.push('/index');
+            setIsLogin(true);
         } else {
             message.error('로그인 실패');
         }
     };
+
+    const { from } = location.state ? location.state : { from : { pathname : '/' } };
+    if (isLogin) {
+        return <Redirect to={from}/>;
+    }
 
     return (
         <div className="center-container">
