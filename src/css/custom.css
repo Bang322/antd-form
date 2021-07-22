@@ -185,3 +185,7 @@ body {
 .login-form-icon {
     color : #b5b5b5;
 }
+
+.ant-table-row .ant-table-cell:not(:first-child) {
+    cursor : pointer;
+}
