@@ -8,6 +8,7 @@ import {lazy, Suspense, useEffect, useState} from "react";
 
 library.add(fas, far);
 
+// 코드 스플리팅
 const SignIn = lazy(() => import('./components/user/SignIn'));
 const SignUp = lazy(() => import('./components/user/SignUp'));
 const MainLayout = lazy(() => import('./components/MainLayout'));

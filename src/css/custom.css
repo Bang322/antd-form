@@ -164,12 +164,21 @@ body {
     .layout .footer {
         margin : 0 30px 0 250px;
     }
+    .user-info-container .ant-row:not(:first-child) {
+        margin-top : 20px;
+    }
 }
 
 /* 모바일 화면 */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .layout .footer {
         margin : 0 30px;
+    }
+    .label-text {
+        justify-content : start !important;
+    }
+    .label-text:not(:first-child) {
+        margin-top : 15px;
     }
 }
 
@@ -188,4 +197,18 @@ body {
 
 .ant-table-row .ant-table-cell:not(:first-child) {
     cursor : pointer;
+}
+
+.ant-table-filter-dropdown .ant-btn > svg + span {
+    margin-left : 8px;
+}
+
+.ant-table-filter-dropdown .ant-input {
+    font-size : 13px;
+}
+
+.label-text {
+    display : flex !important;
+    justify-content : center;
+    align-items : center;
 }

@@ -18,7 +18,7 @@ const Sidebar = () => {
     const [currentPath, setCurrentPath] = useState('');
 
     const handleResize = debounce(() => {
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth < 768) {
             setIsMobile(true);
             setCollapsed(false);
         }
